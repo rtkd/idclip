@@ -9,7 +9,7 @@ $ cd folder
 $ npm install
 ```
 
-Run with
+### Run ###
 
 ```bash
 $ node find.js <regex> <infile> <outfile>
