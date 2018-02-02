@@ -2,12 +2,6 @@
 
 Accepts 3 parameters: 1. Regex 2. Infile 3. Outfile
 
-### Install ###
-
-```bash
-$ npm install
-```
-
 ### Run ###
 
 ```bash
