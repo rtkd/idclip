@@ -14,3 +14,9 @@ $ npm install
 ```bash
 $ node find.js <regex> <infile> <outfile>
 ```
+
+### Example ###
+
+```bash
+$ node find.js '<!--.*(3301).*-->' 20141223-http.json comment-3301.json
+```
