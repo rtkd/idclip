@@ -1,4 +1,4 @@
-### Find strings in Project Sonar HTTP Data ###
+### Find strings in Project Sonar HTTP data ###
 
 Accepts 3 parameters: 1. Regex 2. Infile 3. Outfile
 
