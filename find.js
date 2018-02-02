@@ -17,7 +17,7 @@ var getTime = function(date)
 {
 	var h, m, s;
 
-	if (typeof(date) === 'number') { h = Math.floor(date / (3600000) % 60); m = Math.floor(date / (60000) % 60); s = Math.floor(date / 1000 % 60); }
+	if (typeof(date) === 'number') { h = Math.floor(date / 3600000 % 60); m = Math.floor(date / 60000 % 60); s = Math.floor(date / 1000 % 60); }
 
 	else { h = date.getHours(); m = date.getMinutes(); s = date.getSeconds(); }
 
@@ -27,7 +27,7 @@ var getTime = function(date)
 var logProgress = function() { console.log('Done: ' + i + ' / Matches: ' + j + ' / Running: ' + getTime(Date.now() - start)); };
 
 var start = Date.now();
-var interval = setInterval(logProgress, logInterval);
+var status = setInterval(logProgress, logInterval);
 
 console.log('Start: ' + getTime(new Date()));
 
@@ -49,7 +49,7 @@ rl.on('line', function(line)
 
 rl.on('close', function()
 {
-	clearInterval(interval);
+	clearInterval(status);
 	fs.writeFile(cmd[2], out.join('\n'));
 	fs.appendFile('log/log', cmd[0] + ' // ' + cmd[2] + ' // ' + j + ' Matches\n');
 
