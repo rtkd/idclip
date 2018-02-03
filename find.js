@@ -17,16 +17,12 @@ var getTime = function(date)
 {
 	var h, m, s;
 
-	if (typeof(date) === 'number') { h = Math.floor(date / 3600000 % 60); m = Math.floor(date / 60000 % 60); s = Math.floor(date / 1000 % 60); }
-
-	else { h = date.getHours(); m = date.getMinutes(); s = date.getSeconds(); }
+	h = date.getHours(); m = date.getMinutes(); s = date.getSeconds();
 
 	return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
 };
 
-var logProgress = function() { console.log('Done: ' + i + ' / Matches: ' + j + ' / Running: ' + getTime(Date.now() - start)); };
-
-var start = Date.now();
+var logProgress = function() { console.log('Done: ' + i + ' / Matches: ' + j); };
 var status = setInterval(logProgress, logInterval);
 
 console.log('Start: ' + getTime(new Date()));
