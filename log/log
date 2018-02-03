@@ -1,0 +1,2 @@
+\b3301\b // log/3301.json // 2845 Matches
+^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // log/pilgrim-and-3301.json // 0 Matches
