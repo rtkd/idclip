@@ -1,3 +1,4 @@
 node_modules
 data
-log/*.json
+log/**/*.json
+log/**/*.html
