@@ -3,6 +3,8 @@ var path = require('path');
 var readline = require('readline');
 var stream = require('stream');
 
+var removeScripts = true;
+var removeImages = true;
 var logInterval = 60000;
 var hostPerFile = 500;
 
@@ -10,12 +12,20 @@ var cmd = process.argv.slice(2);
 
 var regex = new RegExp(cmd[0], 'i');
 
-var instream = fs.createReadStream(cmd[1]);
-var rl = readline.createInterface(instream);
+var inPath = path.dirname(cmd[1]);
+var inFile = path.basename(cmd[1]);
+
+var outPath = path.dirname(cmd[2]);
+var outFile = path.basename(cmd[2]);
+var outFileExt = path.extname(cmd[2]);
+var outFolder = path.basename(cmd[2], outFileExt);
+
+var inStream = fs.createReadStream(cmd[1]);
+var readLine = readline.createInterface(inStream);
 
 var current = 0, match = 0, matches = [];
 
-rl.on('line', function(line)
+readLine.on('line', function(line)
 {
 	var item = JSON.parse(line);
 
@@ -33,13 +43,18 @@ rl.on('line', function(line)
 	current ++;
 });
 
-rl.on('close', function()
+readLine.on('close', function()
 {
 	clearInterval(status);
 
 	var  files = [], json = [], html = [], htmlHead  = '<!DOCTYPE html><html><head><meta charset="utf-8"><style>*{box-sizing:border-box;}nav a{display:inline-block;padding:1rem;}.item{display:inline-block;}.itemURL{margin-bottom:1rem;}</style></head><body>', htmlFoot = '</body></html>';
 
 	var i = 0, j = 0, matchesLength = matches.length;
+
+	if (removeScripts === true)
+	{
+		var parser = new DOMParser();
+	}
 
 	matches.forEach(function(item) { json.push(JSON.stringify(item)); });
 
@@ -82,14 +97,17 @@ rl.on('close', function()
 
 	});
 
+
+	//fs.mkdirSync(path.join(outPath, outFolder));
+
 	html.forEach(function(page, i)
 	{
-		fs.writeFile('log/' + path.basename(cmd[2], '.json') + '-' + i + '.html', page.join('\n\n'));
+		//fs.writeFile(path.join(outPath, outFolder, outFolder + '-' + i + '.html'), page.join('\n\n'));
 	});
 
-	fs.writeFile(cmd[2], json.join('\n'));
+	//fs.writeFile(path.join(outPath, outFolder, outFile), json.join('\n'));
 
-	fs.appendFile('log/.log', cmd[0] + ' // ' + cmd[1] + ' // ' + cmd[2] + ' // ' + match + ' Hosts\n');
+	//fs.appendFile('log/.log', cmd[0] + ' // ' + path.join(inPath, inFile) + ' // ' + path.join(outPath, outFolder, outFile) + ' // ' + match + ' Hosts\n');
 
 	console.log('End: ' + getTime(new Date()));
 
