@@ -1,4 +1,3 @@
 \b3301\b // data/20141223-http.json // log/3301.json // 2845 Hosts
 ^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/pilgrim-and-3301.json // 0 Hosts
 ffd8ffe0|e0ffd8ff|0eff8dff // data/20141223-http.json // log/jpg-magic-byte.json // 0 Hosts
-a // data/test.json // log/test.json // 9269 Hosts
