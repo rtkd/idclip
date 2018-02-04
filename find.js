@@ -89,7 +89,7 @@ rl.on('close', function()
 
 	fs.writeFile(cmd[2], json.join('\n'));
 
-	fs.appendFile('log/.log', cmd[0] + ' // ' + cmd[1] + ' // ' + cmd[2] + ' // ' + j + ' Hosts\n');
+	fs.appendFile('log/.log', cmd[0] + ' // ' + cmd[1] + ' // ' + cmd[2] + ' // ' + match + ' Hosts\n');
 
 	console.log('End: ' + getTime(new Date()));
 
