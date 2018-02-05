@@ -1,0 +1,25 @@
+{
+  "name": "idclip",
+  "version": "1.0.0",
+  "description": "Accepts 3 parameters: 1. Regular Expression 2. Infile 3. Outfile",
+  "main": "find.js",
+  "dependencies": {
+    "event-stream": "^3.3.4"
+  },
+  "devDependencies": {
+    "jsdom": "^11.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtkd/idclip.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtkd/idclip/issues"
+  },
+  "homepage": "https://github.com/rtkd/idclip#readme"
+}
