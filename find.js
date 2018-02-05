@@ -2,9 +2,10 @@ var fs = require('fs');
 var path = require('path');
 var readline = require('readline');
 var stream = require('stream');
+var jsdom = require('jsdom');
 
 var removeScripts = true;
-var removeImages = true;
+var replaceImages = true;
 var logInterval = 60000;
 var hostPerFile = 500;
 
@@ -51,11 +52,6 @@ readLine.on('close', function()
 
 	var i = 0, j = 0, matchesLength = matches.length;
 
-	if (removeScripts === true)
-	{
-		var parser = new DOMParser();
-	}
-
 	matches.forEach(function(item) { json.push(JSON.stringify(item)); });
 
 	while (i < matchesLength)
@@ -86,7 +82,50 @@ readLine.on('close', function()
 		{
 			var hostDataHTML = host.data.match(/<html([\s\S]*?)html>/ig);
 
-			var hostHTML = hostDataHTML ? hostDataHTML.toString().replace(/"/g, '&quot;') : 'No HTML';
+			hostDataHTML = hostDataHTML ? hostDataHTML.toString() : 'No HTML';
+
+			var { JSDOM } = jsdom;
+
+			var dom = new JSDOM(hostDataHTML);
+
+			if (removeScripts === true)
+			{
+				var headScript = dom.window.document.querySelectorAll('head script');
+				var bodyScript = dom.window.document.querySelectorAll('body script');
+
+				for (var key1 in headScript)
+				{
+					if (headScript.hasOwnProperty(key1))
+					{
+						headScript[key1].remove();
+					}
+				}
+
+				for (var key2 in bodyScript)
+				{
+					if (bodyScript.hasOwnProperty(key2))
+					{
+						bodyScript[key2].remove();
+					}
+				}
+			}
+
+			if (replaceImages === true)
+			{
+				var images = dom.window.document.querySelectorAll('img');
+
+				for (var key3 in images)
+				{
+					if (images.hasOwnProperty(key3))
+					{
+						images[key3].src = 'http://placehold.it/200x100&text=IMAGE REPLACED';
+					}
+				}
+			}
+
+			hostDataHTML = dom.serialize();
+
+			var hostHTML = hostDataHTML ? hostDataHTML.replace(/"/g, '&quot;') : 'No HTML';
 
 			html[i].push('<div class="item"><iframe seamless sandbox srcdoc="' + hostHTML + '"></iframe><div class="itemURL"><a href="http://' + host.host + '">' + host.host + '</a></div></div>');
 		});
@@ -98,16 +137,16 @@ readLine.on('close', function()
 	});
 
 
-	//fs.mkdirSync(path.join(outPath, outFolder));
+	fs.mkdirSync(path.join(outPath, outFolder));
 
 	html.forEach(function(page, i)
 	{
-		//fs.writeFile(path.join(outPath, outFolder, outFolder + '-' + i + '.html'), page.join('\n\n'));
+		fs.writeFile(path.join(outPath, outFolder, outFolder + '-' + i + '.html'), page.join('\n\n'));
 	});
 
-	//fs.writeFile(path.join(outPath, outFolder, outFile), json.join('\n'));
+	fs.writeFile(path.join(outPath, outFolder, outFile), json.join('\n'));
 
-	//fs.appendFile('log/.log', cmd[0] + ' // ' + path.join(inPath, inFile) + ' // ' + path.join(outPath, outFolder, outFile) + ' // ' + match + ' Hosts\n');
+	fs.appendFile('log/.log', cmd[0] + ' // ' + path.join(inPath, inFile) + ' // ' + path.join(outPath, outFolder, outFile) + ' // ' + match + ' Hosts\n');
 
 	console.log('End: ' + getTime(new Date()));
 
