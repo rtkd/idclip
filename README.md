@@ -15,9 +15,12 @@ var hostPerFile = 500; // Number of hosts per HTML file. Default: 500.
 ### WARNING ###
 
 Use at own risk!<br>
+<br>
 There is abolutely no warranty every script is removed or every image replaced!<br>
 Scripts within attributes or CSS or SVG will pass through untouched!<br>
-Images referenced within CSS will pass through untouched!
+Images referenced within CSS will pass through untouched!<br>
+<br>
+Be save, use a VM to look at HTML files!
 
 ### Run ###
 
