@@ -1,2 +1,2 @@
-*.json filter=lfs diff=lfs merge=lfs -text
-*.html filter=lfs diff=lfs merge=lfs -text
+log/**/*.json filter=lfs diff=lfs merge=lfs -text
+log/**/*.html filter=lfs diff=lfs merge=lfs -text
