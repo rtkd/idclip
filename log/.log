@@ -2,5 +2,4 @@
 ^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/pilgrim-and-3301/pilgrim-and-3301.json // 0 Hosts
 ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20141223-http.json // log/jpg-magic-byte/jpg-magic-byte.json // 0 Hosts
 1595277641|1,595,277,641|1\.595\.277\.641 // data/20141223-http.json // log/parabel-number/parabel-number.json // 0 Hosts
-Apache // data/test.json // log/test/test.json // 2123 Hosts
-\b3301\b // data/20141223-http.json // log/3301/3301.json // 2845 Hosts
+<!--.*\b1033\b.*--> // data/20141223-http.json // log/comment-1033/comment-1033.json // 243 Hosts
