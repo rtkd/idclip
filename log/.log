@@ -3,3 +3,8 @@
 ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20141223-http.json // log/jpg-magic-byte/jpg-magic-byte.json // 0 Hosts
 1595277641|1,595,277,641|1\.595\.277\.641 // data/20141223-http.json // log/parabel-number/parabel-number.json // 0 Hosts
 <!--.*\b1033\b.*--> // data/20141223-http.json // log/comment-1033/comment-1033.json // 243 Hosts
+^(?=.*\bcicada\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/cicada-and-3301/cicada-and-3301.json // 0 Hosts
+^(?=.*\bgood luck\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/good-luck-and-3301/good-luck-and-3301.json // 0 Hosts
+<!--.*\b3301\b.*--> // data/20141223-http.json // log/comment-3301/comment-3301.json // 38 Hosts
+\b845145127\b // data/20141223-http.json // log/pgp-comment/pgp-comment.json // 0 Hosts
+\b7A35090F\b // data/20141223-http.json // log/pgp-key-id/pgp-key-id.json // 0 Hosts
