@@ -6,6 +6,7 @@ Returns: Matched hosts as JSON and HTML.
 ### Options ###
 
 ```js
+var buildHTML = true; // Build HTML files. Default: true.
 var removeScripts = true; // Remove scripts from host HTML. Default: true.
 var replaceImages = true; // Replace images in host HTML. Default: true.
 var logInterval = 60000; // How often to log progress to console. Default: 60000.
