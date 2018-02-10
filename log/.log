@@ -14,3 +14,5 @@ ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff
 
 \b3301\b // data/20140610-http.json // log/3301-01/3301-01.json // 2867 Hosts
 ^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20140610-http.json // log/pilgrim-and-3301-01/pilgrim-and-3301-01.json // 0 Hosts
+ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20140610-http.json // log/jpg-magic-byte-01/jpg-magic-byte-01.json // 0 Hosts
+1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/parable-number-01/parable-number-01.json // 0 Hosts
