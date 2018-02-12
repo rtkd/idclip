@@ -12,8 +12,10 @@ ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff
 \b7A35090F\b // data/20141223-http.json // log/20141223-http/pgp-key-id/pgp-key-id.json // 0 Hosts
 <!--.*\bpilgrim\b.*--> // data/20141223-http.json // log/20141223-http/comment-pilgrim/comment-pilgrim.json // 18 Hosts
 \b3301\b // data/20140610-http.json // log/20140610-http/3301-01/3301-01.json // 2867 Hosts
-^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20140610-http.json // log/20140610-http/pilgrim-and-3301-01/pilgrim-and-3301-01.json // 0 Hosts
-ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20140610-http.json // log/20140610-http/jpg-magic-byte-01/jpg-magic-byte-01.json // 0 Hosts
-1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/20140610-http/parable-number-01/parable-number-01.json // 0 Hosts
-<!--.*\b1033\b.*--> // data/20140610-http.json // log/20140610-http/comment-1033-01/comment-1033-01.json // 313 Hosts
+^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20140610-http.json // log/20140610-http/pilgrim-and-3301-01/pilgrim-and-3301.json // 0 Hosts
+ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20140610-http.json // log/20140610-http/jpg-magic-byte-01/jpg-magic-byte.json // 0 Hosts
+1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/20140610-http/parable-number-01/parable-number.json // 0 Hosts
+<!--.*\b1033\b.*--> // data/20140610-http.json // log/20140610-http/comment-1033-01/comment-1033.json // 313 Hosts
 \b7A35090F\b // data/20140610-http.json // log/20140610-http/20140610-http/pgp-key-id/pgp-key-id.json // 0 Hosts
+<img src="[0-9]*\.jpg" \/><br \/> // data/20140610-http.json // log/20140610-http/image-src-0-9.jpg/image-src-0-9.jpg.json // 2 Hosts
+\b845145127\b // data/20140610-http.json // log/20140610-http/pgp-comment/pgp-comment.json // 0 Hosts
