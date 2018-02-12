@@ -25,11 +25,9 @@ var config =
 
 Use at own risk!<br>
 <br>
-There is abolutely no warranty every script is removed or every image replaced!<br>
+There is abolutely no warranty every script or image is removed from host HTML!<br>
 Scripts within attributes or CSS or SVG will pass through untouched!<br>
-Images referenced within CSS will pass through untouched!<br>
-<br>
-Be save, use a VM to look at HTML files!
+Images within CSS will pass through untouched!<br>
 
 ### Run ###
 
