@@ -13,7 +13,7 @@
 		'buildHTML': true,
 		'removeScripts': true,
 		'replaceImages': true,
-		'hostsPerHTMLFile': 2,
+		'hostsPerHTMLFile': 500,
 		'logInterval': 60000,
 
 		'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // https://baconmockup.com/200/100 https://placekitten.com/g/200/100
