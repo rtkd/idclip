@@ -32,7 +32,7 @@ $ node find.js <regex> <infile> <outfile>
 ### Example ###
 
 ```bash
-$ node find.js '\b3301\b' 20141223-http.json 3301.json
+$ node --max-old-space-size=8192 find.js '\b3301\b' 20141223-http.json 3301.json
 ```
 
 ### Bugs ###

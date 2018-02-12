@@ -16,7 +16,7 @@
 		'hostsPerHTMLFile': 500,
 		'logInterval': 60000,
 
-		'happyKitten': 'http://placehold.it/200x100&text=Image replaced',
+		'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // https://baconmockup.com/200/100 https://placekitten.com/g/200/100
 		'logFile': 'log/.log',
 		'htmlHeader': '<!DOCTYPE html><html><head><meta charset="utf-8"><style>*{box-sizing:border-box;}nav a{display:inline-block;padding:1rem;}.item{display:inline-block;}.itemURL{margin-bottom:1rem;}</style></head><body>',
 		'htmlFooter': '</body></html>'

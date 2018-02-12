@@ -17,5 +17,3 @@ ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff
 1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/20140610-http/parable-number-01/parable-number-01.json // 0 Hosts
 <!--.*\b1033\b.*--> // data/20140610-http.json // log/20140610-http/comment-1033-01/comment-1033-01.json // 313 Hosts
 \b7A35090F\b // data/20140610-http.json // log/20140610-http/20140610-http/pgp-key-id/pgp-key-id.json // 0 Hosts
-hello // data/test.json // log/test/test/test.json // 10 Hosts
-hello // data/test.json // log/test/test/test.json // 10 Hosts
