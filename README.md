@@ -6,11 +6,19 @@ Returns: Matched hosts as JSON and HTML.
 ### Options ###
 
 ```js
-var buildHTML = true; // Build HTML files. Default: true.
-var removeScripts = true; // Remove scripts from host HTML. Default: true.
-var replaceImages = true; // Replace images in host HTML. Default: true.
-var logInterval = 60000; // How often to log progress to console. Default: 60000.
-var hostPerFile = 500; // Number of hosts per HTML file. Default: 500.
+var config =
+{
+	'buildHTML': true, // Build HTML files. Default: true.
+	'removeScripts': true, // Remove scripts from host HTML. Default: true.
+	'replaceImages': true, // Replace images in host HTML. Default: true.
+	'hostsPerHTMLFile': 500, // Number of hosts per HTML file. Default: 500.
+	'logInterval': 60000, // How often to log progress to console. Default: 60000.
+
+	'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // Placeholder image
+	'logFile': 'log/.log', // Log file
+	'htmlHeader': '<!DOCTYPE html><html><head><meta charset="utf-8"><style>*{box-sizing:border-box;}nav a{display:inline-block;padding:1rem;}.item{display:inline-block;}.itemURL{margin-bottom:1rem;}</style></head><body>', // HTML Header
+	'htmlFooter': '</body></html>' // HTML Footer
+};
 ```
 
 ### WARNING ###
