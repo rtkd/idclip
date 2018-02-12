@@ -13,7 +13,7 @@
 		'buildHTML': true,
 		'removeScripts': true,
 		'replaceImages': true,
-		'hostsPerHTMLFile': 500,
+		'hostsPerHTMLFile': 2,
 		'logInterval': 60000,
 
 		'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // https://baconmockup.com/200/100 https://placekitten.com/g/200/100
@@ -32,41 +32,19 @@
 	var logProgress = function() { logCounter ++; log('Done: ' + current + ' / Hosts: ' + matches +' / Avg: ' + Math.floor(current / logCounter)); };
 	var logStatus = setInterval(logProgress, config.logInterval);
 
-	var getTime = function(date)
-	{
-		var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
-		return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
-	};
+	var getTime = function(date) { var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds(); return (h < 10 ? '0' + h : h) + ':' + (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s); };
 
-	var splitHostsToFiles = function ()
-	{
-		var files = [];
-		for (var i = 0, ii = 0, iii = hosts.length; i < iii; i += config.hostsPerHTMLFile) { files[ii] = hosts.slice(i, i + config.hostsPerHTMLFile); ii ++; }
-		return files;
-	};
+	var splitHostsToFiles = function () { var files = []; for (var i = 0, ii = 0, iii = hosts.length; i < iii; i += config.hostsPerHTMLFile) { files[ii] = hosts.slice(i, i + config.hostsPerHTMLFile); ii ++; } return files; };
 
-	var buildMenu = function (pageCount)
-	{
-		var menu = '<nav>';
-		for (var i = 0; i < pageCount; i ++) { menu += '<a href="' + outFileName + '-' + i + '.html' + '">' + i + '</a>'; }
-		return menu += '</nav>';
-	};
+	var buildMenu = function (pageCount) { var menu = '<nav>'; for (var i = 0; i < pageCount; i ++) { menu += '<a href="' + outFileName + '-' + i + '.html' + '">' + i + '</a>'; } return menu += '</nav>'; };
 
 	var removeScripts = function (dom) { dom.window.document.querySelectorAll('script').forEach(function(script){ script.remove(); }); };
 
 	var replaceImages = function (dom) { dom.window.document.querySelectorAll('img').forEach(function(image){ image.src = config.happyKitten; }); };
 
-	var isDir = function (path)
-	{
-		try	{ return fs.statSync(path).isDirectory(); }
-		catch (e) { if (e.code === 'ENOENT') return false; else throw e; }
-	};
+	var isDir = function (path) { try { return fs.statSync(path).isDirectory(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
 
-	var isFile = function (path)
-	{
-		try	{ return fs.statSync(path).isFile(); }
-		catch (e) { if (e.code === 'ENOENT') return false; else throw e; }
-	};
+	var isFile = function (path) { try { return fs.statSync(path).isFile(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
 
 	var regex = new RegExp(process.argv[2], 'i');
 
@@ -119,18 +97,16 @@
 
 		if (config.buildHTML === true)
 		{
-			var htmlFiles = [];
-
 			var hostsPerHTMLFile = splitHostsToFiles();
 
 			var htmlMenu = buildMenu(hostsPerHTMLFile.length);
 
 			hostsPerHTMLFile.forEach(function(file, i)
 			{
-				htmlFiles[i] = [];
+				var htmlFile = [];
 
-				htmlFiles[i].push(config.htmlHeader);
-				htmlFiles[i].push(htmlMenu);
+				htmlFile.push(config.htmlHeader);
+				htmlFile.push(htmlMenu);
 
 				file.forEach(function(host)
 				{
@@ -146,27 +122,23 @@
 
 						var hostHTML = dom.serialize().replace(/"/g, '&quot;');
 
-						htmlFiles[i].push('<div class="item"><iframe seamless sandbox srcdoc="' + hostHTML + '"></iframe><div class="itemURL"><a href="http://' + host.host + '">' + host.host + '</a></div></div>');
+						htmlFile.push('<div class="item"><iframe seamless sandbox srcdoc="' + hostHTML + '"></iframe><div class="itemURL"><a href="http://' + host.host + '">' + host.host + '</a></div></div>');
 					}
-
 				});
 
-				htmlFiles[i].push(htmlMenu);
-				htmlFiles[i].push(config.htmlFooter);
-			});
+				htmlFile.push(htmlMenu);
+				htmlFile.push(config.htmlFooter);
 
-			htmlFiles.forEach(function(page, i)
-			{
-				if (!isFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'), page.join('\n\n'));
+				if (!isFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'), htmlFile.join('\n\n'));
 				else
 				{
 					log('File exists. Renaming..');
-					fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html' + '-' + getTime(new Date())), page.join('\n\n'));
+					fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html' + '-' + getTime(new Date())), htmlFile.join('\n\n'));
 				}
 			});
-
-			log('Finish: ' + getTime(new Date()));
 		}
+
+		log('Finish: ' + getTime(new Date()));
 	});
 
 	log('Start: ' + getTime(new Date()));
