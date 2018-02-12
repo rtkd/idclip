@@ -65,12 +65,7 @@
 		var host = JSON.parse(line);
 		var hostDataDecoded = new Buffer(host.data, 'base64').toString('utf8');
 
-		if (regex.test(hostDataDecoded))
-		{
-			var item = { 'vhost': host.vhost, 'host': host.host, 'data': hostDataDecoded, 'port': host.port, 'ip': host.ip };
-			hosts.push(item);
-			matches ++;
-		}
+		if (regex.test(hostDataDecoded)) { hosts.push({ 'vhost': host.vhost, 'host': host.host, 'data': hostDataDecoded, 'port': host.port, 'ip': host.ip }); matches ++; }
 
 		current ++;
 	});
@@ -80,61 +75,59 @@
 		clearInterval(logStatus);
 
 		var  json = [];
-
 		hosts.forEach(function(host) { json.push(JSON.stringify(host)); });
 
 		if (!isDir(path.join(outDirName, inFileName))) fs.mkdirSync(path.join(outDirName, inFileName));
 		if (!isDir(path.join(outDirName, inFileName, outFileName))) fs.mkdirSync(path.join(outDirName, inFileName, outFileName));
 
 		if (!isFile(path.join(outDirName, inFileName, outFileName, outFile))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile), json.join('\n'));
-		else
-		{
-			log('File exists. Renaming..');
-			fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile) + '-' + getTime(new Date()), json.join('\n'));
-		}
+		else { log('File exists. Renaming..'); fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile) + '-' + getTime(new Date()), json.join('\n')); }
 
 		fs.appendFile(config.logFile, process.argv[2] + ' // ' + process.argv[3] + ' // ' + path.join(outDirName, inFileName, outFileName, outFile) + ' // ' + matches + ' Hosts\n');
 
 		if (config.buildHTML === true)
 		{
-			var hostsPerHTMLFile = splitHostsToFiles();
+			var hostsPerFile = splitHostsToFiles();
+			var htmlMenu = buildMenu(hostsPerFile.length);
 
-			var htmlMenu = buildMenu(hostsPerHTMLFile.length);
-
-			hostsPerHTMLFile.forEach(function(file, i)
+			hostsPerFile.forEach(function(file, i)
 			{
 				var htmlFile = [];
 
 				htmlFile.push(config.htmlHeader);
 				htmlFile.push(htmlMenu);
 
-				file.forEach(function(host)
+				file.forEach(function(host, j)
 				{
-					var hostDataHTML = host.data.match(/<html([\s\S]*?)html>/ig);
-					hostDataHTML = hostDataHTML ? hostDataHTML.toString() : undefined;
+					var hostHTML = host.data.match(/<html([\s\S]*?)html>/ig);
 
-					if (hostDataHTML && (config.removeScripts === true || config.replaceImages === true))
+					if (hostHTML)
 					{
-						var dom = new jsdom.JSDOM(hostDataHTML);
+						hostHTML = hostHTML.toString();
 
-						if (config.removeScripts === true) removeScripts(dom);
-						if (config.replaceImages === true) replaceImages(dom);
+						if(config.removeScripts === true || config.replaceImages === true)
+						{
+							var dom = new jsdom.JSDOM(hostHTML);
 
-						var hostHTML = dom.serialize().replace(/"/g, '&quot;');
+							if (config.removeScripts === true) removeScripts(dom);
+							if (config.replaceImages === true) replaceImages(dom);
 
-						htmlFile.push('<div class="item"><iframe seamless sandbox srcdoc="' + hostHTML + '"></iframe><div class="itemURL"><a href="http://' + host.host + '">' + host.host + '</a></div></div>');
+							hostHTML = dom.serialize();
+						}
+
+						hostHTML = hostHTML.replace(/"/g, '&quot;');
 					}
+
+					else hostHTML = 'No HTML found. Check JSON for server response.';
+
+					htmlFile.push('<div class="item"><iframe seamless sandbox srcdoc="' + hostHTML + '"></iframe><div class="itemURL"><a href="http://' + host.host + '">' + host.host + '</a></div></div>');
 				});
 
 				htmlFile.push(htmlMenu);
 				htmlFile.push(config.htmlFooter);
 
 				if (!isFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html'), htmlFile.join('\n\n'));
-				else
-				{
-					log('File exists. Renaming..');
-					fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html' + '-' + getTime(new Date())), htmlFile.join('\n\n'));
-				}
+				else { log('File exists. Renaming..'); fs.writeFile(path.join(outDirName, inFileName, outFileName, outFileName + '-' + i + '.html' + '-' + getTime(new Date())), htmlFile.join('\n\n')); }
 			});
 		}
 
