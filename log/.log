@@ -1,18 +1,21 @@
 RegEx // Infile // Outfile // Matched Hosts
 
-\b3301\b // data/20141223-http.json // log/3301/3301.json // 2845 Hosts
-^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/pilgrim-and-3301/pilgrim-and-3301.json // 0 Hosts
-ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20141223-http.json // log/jpg-magic-byte/jpg-magic-byte.json // 0 Hosts
-1595277641|1,595,277,641|1\.595\.277\.641 // data/20141223-http.json // log/parabel-number/parabel-number.json // 0 Hosts
-<!--.*\b1033\b.*--> // data/20141223-http.json // log/comment-1033/comment-1033.json // 243 Hosts
-^(?=.*\bcicada\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/cicada-and-3301/cicada-and-3301.json // 0 Hosts
-^(?=.*\bgood luck\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/good-luck-and-3301/good-luck-and-3301.json // 0 Hosts
-<!--.*\b3301\b.*--> // data/20141223-http.json // log/comment-3301/comment-3301.json // 38 Hosts
-\b845145127\b // data/20141223-http.json // log/pgp-comment/pgp-comment.json // 0 Hosts
-\b7A35090F\b // data/20141223-http.json // log/pgp-key-id/pgp-key-id.json // 0 Hosts
-<!--.*\bpilgrim\b.*--> // data/20141223-http.json // log/comment-pilgrim/comment-pilgrim.json // 18 Hosts
-
-\b3301\b // data/20140610-http.json // log/3301-01/3301-01.json // 2867 Hosts
-^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20140610-http.json // log/pilgrim-and-3301-01/pilgrim-and-3301-01.json // 0 Hosts
-ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20140610-http.json // log/jpg-magic-byte-01/jpg-magic-byte-01.json // 0 Hosts
-1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/parable-number-01/parable-number-01.json // 0 Hosts
+\b3301\b // data/20141223-http.json // log/20141223-http/3301/3301.json // 2845 Hosts
+^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/20141223-http/pilgrim-and-3301/pilgrim-and-3301.json // 0 Hosts
+ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20141223-http.json // log/20141223-http/jpg-magic-byte/jpg-magic-byte.json // 0 Hosts
+1595277641|1,595,277,641|1\.595\.277\.641 // data/20141223-http.json // log/20141223-http/parabel-number/parabel-number.json // 0 Hosts
+<!--.*\b1033\b.*--> // data/20141223-http.json // log/20141223-http/comment-1033/comment-1033.json // 243 Hosts
+^(?=.*\bcicada\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/20141223-http/cicada-and-3301/cicada-and-3301.json // 0 Hosts
+^(?=.*\bgood luck\b)(?=.*\b3301\b).*$ // data/20141223-http.json // log/20141223-http/good-luck-and-3301/good-luck-and-3301.json // 0 Hosts
+<!--.*\b3301\b.*--> // data/20141223-http.json // log/20141223-http/comment-3301/comment-3301.json // 38 Hosts
+\b845145127\b // data/20141223-http.json // log/20141223-http/pgp-comment/pgp-comment.json // 0 Hosts
+\b7A35090F\b // data/20141223-http.json // log/20141223-http/pgp-key-id/pgp-key-id.json // 0 Hosts
+<!--.*\bpilgrim\b.*--> // data/20141223-http.json // log/20141223-http/comment-pilgrim/comment-pilgrim.json // 18 Hosts
+\b3301\b // data/20140610-http.json // log/20140610-http/3301-01/3301-01.json // 2867 Hosts
+^(?=.*\bpilgrim\b)(?=.*\b3301\b).*$ // data/20140610-http.json // log/20140610-http/pilgrim-and-3301-01/pilgrim-and-3301-01.json // 0 Hosts
+ffd8ffdb|dbffd8ff|bdff8dff|ffd8ffe0|e0ffd8ff|0eff8dff|ffd8ffe1|e1ffd8ff|1eff8dff // data/20140610-http.json // log/20140610-http/jpg-magic-byte-01/jpg-magic-byte-01.json // 0 Hosts
+1595277641|1,595,277,641|1\.595\.277\.641 // data/20140610-http.json // log/20140610-http/parable-number-01/parable-number-01.json // 0 Hosts
+<!--.*\b1033\b.*--> // data/20140610-http.json // log/20140610-http/comment-1033-01/comment-1033-01.json // 313 Hosts
+\b7A35090F\b // data/20140610-http.json // log/20140610-http/20140610-http/pgp-key-id/pgp-key-id.json // 0 Hosts
+hello // data/test.json // log/test/test/test.json // 10 Hosts
+hello // data/test.json // log/test/test/test.json // 10 Hosts
