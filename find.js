@@ -44,7 +44,7 @@
 
 	var isDir = function (path) { try { return fs.statSync(path).isDirectory(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
 
-	var isFile = function (path) { try { return fs.statSync(path).isFile(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
+	var isFile = function (path) { try { return fs.statSync(path).isFile(); } catch (e) { if (e.code === 'EISDIR') return false; else throw e; } };
 
 	var regex = new RegExp(process.argv[2], 'i');
 
