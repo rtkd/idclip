@@ -6,19 +6,13 @@ Returns: Matched hosts as JSON and HTML.
 ### Options ###
 
 ```js
-var config =
-{
-	'buildHTML': true, // Build HTML files. Default: true.
-	'removeScripts': true, // Remove scripts from host HTML. Default: true.
-	'replaceImages': true, // Replace images in host HTML. Default: true.
-	'hostsPerHTMLFile': 500, // Number of hosts per HTML file. Default: 500.
-	'logInterval': 60000, // How often to log progress to console. Default: 60000.
-
-	'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // Placeholder image
-	'logFile': 'log/.log', // Log file
-	'htmlHeader': '<!DOCTYPE html><html><head><meta charset="utf-8"><style>*{box-sizing:border-box;}nav a{display:inline-block;padding:1rem;}.item{display:inline-block;}.itemURL{margin-bottom:1rem;}</style></head><body>', // HTML Header
-	'htmlFooter': '</body></html>' // HTML Footer
-};
+'buildHTML': true, // Build HTML files. Default: true.
+'removeScripts': true, // Remove scripts from host HTML. Default: true.
+'replaceImages': true, // Replace images in host HTML. Default: true.
+'happyKitten': 'http://placehold.it/200x100&text=Image replaced', // Placeholder image.
+'hostsPerHTMLFile': 500, // Number of hosts per HTML file. Default: 500.
+'logInterval': 60000, // How often to log progress to console. Default: 60000.
+'logFile': 'log/.log', // Log file
 ```
 
 ### WARNING ###
@@ -26,8 +20,7 @@ var config =
 Use at own risk!<br>
 <br>
 There is abolutely no warranty every script or image is removed from host HTML!<br>
-Scripts within attributes or CSS or SVG will pass through untouched!<br>
-Images within CSS will pass through untouched!<br>
+Everything but <script> and <img> will pass through untouched!
 
 ### Run ###
 
