@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1f5f0e5cd0806fe89d587b8a0050eb8ae26c9a57868ef3b8017f3a9cb4c27fda
-size 587
+{
+  "name": "idclip",
+  "version": "1.0.0",
+  "description": "Find strings in Project Sonar HTTP data",
+  "main": "find.js",
+  "dependencies": {
+    "event-stream": "^3.3.4"
+  },
+  "devDependencies": {
+    "jsdom": "^11.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtkd/idclip.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtkd/idclip/issues"
+  },
+  "homepage": "https://github.com/rtkd/idclip#readme"
+}
