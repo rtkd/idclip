@@ -20,7 +20,7 @@ Returns: Matched hosts as JSON and HTML.
 Use at own risk!<br>
 <br>
 There is abolutely no warranty every script or image is removed from host HTML!<br>
-Everything but <script> and <img> will pass through untouched!
+Everything but ```html <script>``` and ```html <img>``` will pass through untouched!
 
 ### Run ###
 
