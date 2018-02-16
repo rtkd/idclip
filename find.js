@@ -10,7 +10,7 @@
 
 	var config =
 	{
-		'buildHTML': true,
+		'buildHTML': false,
 		'removeScripts': true,
 		'replaceImages': true,
 		'hostsPerHTMLFile': 500,
@@ -44,7 +44,7 @@
 
 	var isDir = function (path) { try { return fs.statSync(path).isDirectory(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
 
-	var isFile = function (path) { try { return fs.statSync(path).isFile(); } catch (e) { if (e.code === 'EISDIR') return false; else throw e; } };
+	var isFile = function (path) { try { return fs.statSync(path).isFile(); } catch (e) { if (e.code === 'ENOENT') return false; else throw e; } };
 
 	var regex = new RegExp(process.argv[2], 'i');
 
@@ -62,10 +62,14 @@
 
 	readLine.on('line', function(line)
 	{
-		var host = JSON.parse(line);
-		var hostDataDecoded = new Buffer(host.data, 'base64').toString('utf8');
+		// Sonar data
+		//var host = JSON.parse(line);
+		//var hostDataDecoded = new Buffer(host.data, 'base64').toString('utf8');
+		//if (regex.test(hostDataDecoded)) { hosts.push({ 'vhost': host.vhost, 'host': host.host, 'data': hostDataDecoded, 'port': host.port, 'ip': host.ip }); matches ++; }
 
-		if (regex.test(hostDataDecoded)) { hosts.push({ 'vhost': host.vhost, 'host': host.host, 'data': hostDataDecoded, 'port': host.port, 'ip': host.ip }); matches ++; }
+		// Hidden Service data
+		if (regex.test(line)) { hosts.push(line); matches ++; }
+
 
 		current ++;
 	});
@@ -74,14 +78,20 @@
 	{
 		clearInterval(logStatus);
 
-		var  json = [];
-		hosts.forEach(function(host) { json.push(JSON.stringify(host)); });
+		// Sonar data
+		//var  json = [];
+		//hosts.forEach(function(host) { json.push(JSON.stringify(host)); });
 
 		if (!isDir(path.join(outDirName, inFileName))) fs.mkdirSync(path.join(outDirName, inFileName));
 		if (!isDir(path.join(outDirName, inFileName, outFileName))) fs.mkdirSync(path.join(outDirName, inFileName, outFileName));
 
-		if (!isFile(path.join(outDirName, inFileName, outFileName, outFile))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile), json.join('\n'));
-		else { log('File exists. Renaming..'); fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile) + '-' + getTime(new Date()), json.join('\n')); }
+		// Sonar data
+		//if (!isFile(path.join(outDirName, inFileName, outFileName, outFile))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile), json.join('\n'));
+		//else { log('File exists. Renaming..'); fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile) + '-' + getTime(new Date()), json.join('\n')); }
+
+		// Hidden Service data
+		if (!isFile(path.join(outDirName, inFileName, outFileName, outFile))) fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile), hosts.join('\n'));
+		else { log('File exists. Renaming..'); fs.writeFile(path.join(outDirName, inFileName, outFileName, outFile) + '-' + getTime(new Date()), hosts.join('\n')); }
 
 		fs.appendFile(config.logFile, process.argv[2] + ' // ' + process.argv[3] + ' // ' + path.join(outDirName, inFileName, outFileName, outFile) + ' // ' + matches + ' Hosts\n');
 
